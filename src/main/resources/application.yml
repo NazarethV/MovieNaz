@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: root
+    password: Ventana1204
+    url: jdbc:mysql://localhost:3306/movies
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
