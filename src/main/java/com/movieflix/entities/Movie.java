@@ -15,16 +15,26 @@ public class Movie {
 
     //No puede ser false, y tiene que tener una longitud de 200 carácteres por ejemplo
     @Column(nullable = false, length = 200)
-    @NotBlank(message = "Please provide movie´s title") //Se puede pasar un mensaje también
+    @NotBlank(message = "Please provide movie´s title") //No puede estar vacío, Se puede pasar un mensaje también
     private String title;
 
+    @Column(nullable = false) //No es necesario agregar la longitud
+    @NotBlank(message = "Please provide movie´s director") //Para que no esté vacio
     private String director;
 
+    @Column(nullable = false) //No es necesario agregar la longitud
+    @NotBlank(message = "Please provide movie´s studio") //Para que no esté vacio
     private String studio;
 
+    @ElementCollection
+    @CollectionTable(name = "movie_cast") //Nombramos a la tabla
     private Set<String> movieCast;
 
+    @Column(nullable = false) //No es necesario agregar la longitud
+    @NotBlank(message = "Please provide movie´s realease year!") //Para que no esté vacio
     private Integer realeaseYear;
 
+    @Column(nullable = false) //No es necesario agregar la longitud
+    @NotBlank(message = "Please provide movie´s poster!") //Para que no esté vacio
     private String poster;
 }
