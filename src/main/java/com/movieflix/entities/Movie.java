@@ -1,6 +1,7 @@
 package com.movieflix.entities;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,7 +40,6 @@ public class Movie {
     private Set<String> movieCast;
 
     @Column(nullable = false) //No es necesario agregar la longitud
-    @NotBlank(message = "Please provide movie´s realease year!") //Para que no esté vacio
     private Integer realeaseYear;
 
     @Column(nullable = false) //No es necesario agregar la longitud
