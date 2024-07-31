@@ -1,6 +1,7 @@
 package com.movieflix.entities;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
