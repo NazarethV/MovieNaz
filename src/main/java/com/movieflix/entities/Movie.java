@@ -40,7 +40,6 @@ public class Movie {
     private Set<String> movieCast;
 
     @Column(nullable = false) //No es necesario agregar la longitud
-    @NotBlank(message = "Please provide movie´s realease year!") //Para que no esté vacio
     private Integer realeaseYear;
 
     @Column(nullable = false) //No es necesario agregar la longitud
