@@ -2,11 +2,19 @@ package com.movieflix.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 //ENTIDAD CON SUS RESPECTIVAS PROPIEDADES
 // (y Validaciones de las mismas)
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Movie {
 
     @Id
