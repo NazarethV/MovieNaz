@@ -19,7 +19,7 @@ public class FileServiceImpl implements FileService{
     public String uploadFile(String path, MultipartFile file) throws IOException {
 
         //get name (necesitamos el nombre del archivo, porque necesitamos devlver eso)
-        String fileName = file.getOriginalFilename()
+        String fileName = file.getOriginalFilename();
 
         //to get the file path
         String filePath = path + File.separator + fileName;
@@ -39,6 +39,8 @@ public class FileServiceImpl implements FileService{
 
     @Override
     public InputStream getResourceFile(String path, String name) throws FileNotFoundException {
-        return null;
+        String filePath = path + File.separator + fileName;
+        return new FileInputStream(filePath);
     }
 }
+
