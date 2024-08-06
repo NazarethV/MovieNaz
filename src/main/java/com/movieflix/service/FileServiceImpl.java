@@ -3,10 +3,7 @@ package com.movieflix.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -18,7 +15,7 @@ public class FileServiceImpl implements FileService{
     @Override
     public String uploadFile(String path, MultipartFile file) throws IOException {
 
-        //get name (necesitamos el nombre del archivo, porque necesitamos devlver eso)
+        //get name (necesitamos el nombre del archivo, porque necesitamos devolver eso)
         String fileName = file.getOriginalFilename();
 
         //to get the file path
@@ -37,9 +34,9 @@ public class FileServiceImpl implements FileService{
     }
 
 
-    @Override
-    public InputStream getResourceFile(String path, String name) throws FileNotFoundException {
-        String filePath = path + File.separator + fileName;
+    @Override                                      //Nombre del archivo(en FileService también utilizamos filename para el nombre del archivo)
+    public InputStream getResourceFile(String path, String filename) throws FileNotFoundException {
+        String filePath = path + File.separator + filename;
         return new FileInputStream(filePath);
     }
 }

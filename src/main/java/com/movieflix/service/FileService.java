@@ -14,7 +14,7 @@ public interface FileService {
     String uploadFile(String path, MultipartFile file) throws IOException;
 
     //Necesitamos entregar el archivo, y para entregarlo no podemos tomar el archivo directamente. Por lo que necesitamos convertir el archivo a las secuencias o a los bytes
-    InputStream getResourceFile(String path, String name) throws FileNotFoundException;
+    InputStream getResourceFile(String path, String filename) throws FileNotFoundException;
 
 
 
