@@ -6,4 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface MovieService {
 
     MovieDto addMovie(MovieDto movieDto, MultipartFile file);
+
+    MovieDto getMovie(Integer movieId);
+
 }
