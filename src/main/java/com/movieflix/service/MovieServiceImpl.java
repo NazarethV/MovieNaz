@@ -23,12 +23,14 @@ public class MovieServiceImpl implements MovieService{
     @Value("${project.poster}") //HACE REFERENCIA A LA RUTA "/POSTER" DEFINIDA EN EL ARCHIVO .YML !!!!!!!!!!
     private String path;
 
+    @Value("${base.url}")  //Trae la variable de .yml
+    private String baseUrl;
+
     //Parámetro del constructor (MovieRepository) y (FileService)
     public MovieServiceImpl(MovieRepository movieRepository, FileService fileService) {
         this.movieRepository = movieRepository;
         this.fileService = fileService;
     }
-
 
 
     @Override
@@ -37,11 +39,13 @@ public class MovieServiceImpl implements MovieService{
         String uploadedFileName = fileService.uploadFile(path, file);  //Proporcionamos una ruta y un archivo  (por eso más arriba declaramos path, para poder utilizar la ruta)
 
         //2. set the value of field 'poster' as filename
-        movieDto.setPoster(uploadedFileName);
+        movieDto.setPoster(uploadedFileName); //Establecer el nombre del archivo / el valor del campo filename (nombre de archivo)
 
         //3. map dto to Movie object   (Para guardar los datos en la base de datos tenemos un Repository de películas que acepta un objeto de clase movie por o que necesitamos mapear el objeto )
-        Movie movie = new Movie(
+        //Asignar el objeto DTO al objeto película
+        Movie movie = new Movie(  //Creamos un Objet Movie
                 null,
+                //Gracias al Constructor de Movie, podemos crear un constructor acá: -->
                 movieDto.getTitle(),
                 movieDto.getDirector(),
                 movieDto.getStudio(),
@@ -52,12 +56,19 @@ public class MovieServiceImpl implements MovieService{
 
 
         //4. save the movie object -> saved Movie object     (Guardar el Objeto Movie y devolverá ese objeto guardado)   (Devolver la película DTO (la guardada) cómo objeto de respuesta
-        Movie savedMovie = movieRepository.save(movie);
+        Movie savedMovie = movieRepository.save(movie);  //Q el repositorio guarde la Película en la base de datos y devolverá ese objeto movie guardado
+
 
         //5. generate the posterURL       (Debemos generar la URL correspondiente al 'poster' cómo agregamos en la entidad la propiedad URL en poster
+        //Antes de enviar la respuesta, necesitamos hacer una url para el poster
         String posterUrl = baseUrl + "/file/" + uploadedFileName;
 
+        //(En .yml agregamos una variable de entorno: base: url:"http://localhost:8080") y recuperamos esa variable en este archivo más arriba
+        //       ( http://localhost:8080/file/fileName )
+
+
         //6. map Movie object to DTO object and return it  (mapear objeto Movie a objeto DTO y devolverlo)
+       //GENERAMOS LA RESPUESTA (lo que va a devolver addMovie)
         MovieDto response = new MovieDto(
                 savedMovie.getMovieId(),
                 savedMovie.getTitle(),
