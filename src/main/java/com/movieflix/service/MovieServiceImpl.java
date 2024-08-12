@@ -55,7 +55,7 @@ public class MovieServiceImpl implements MovieService{
         //3. map dto to Movie object   (Para guardar los datos en la base de datos tenemos un Repository de películas que acepta un objeto de clase movie por o que necesitamos mapear el objeto )
         //Asignar el objeto DTO al objeto película
         Movie movie = new Movie(  //Creamos un Objet Movie
-                null,
+                null, //En vez de poner directamente el ID
                 //Gracias al Constructor de Movie, podemos crear un constructor acá: -->
                 movieDto.getTitle(),
                 movieDto.getDirector(),
@@ -146,8 +146,53 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public MovieDto updateMovie(Integer movieId, MovieDto movieDto, MultipartFile file) throws IOException {
-        return null;
+        //1. check if movie object exists with given movieId
+        Movie mv = movieRepository.findById(movieId).
+                orElseThrow(() -> new MovieNotFoundException("Movie not found with id = " + movieId));
+
+        //2. if file is null, do nothing
+        //if file is not null, then delete existing file associated with the record, and upload the new file (si el archivo no es nulo, elimine el archivo existente asociado al registro y cargue el nuevo archivo)
+       String fileName = mv.getPoster();
+       if (file != null) {
+           Files.deleteIfExists(Paths.get(path + File.separator + fileName));
+           fileName = fileService.uploadFile(path, file);
+       }
+
+       //3. set movieDto's poster value, according to step2 (paso 2)
+        movieDto.setPoster(fileName);
+
+       //4. map it to Movie object
+        Movie movie = new Movie(
+                mv.getMovieId(),
+                movieDto.getTitle(),
+                movieDto.getDirector(),
+                movieDto.getStudio(),
+                movieDto.getMovieCast(),
+                movieDto.getRealeaseYear(),
+                movieDto.getPoster()
+        );
+
+        //5. save the movie object -> return saved movie object
+        Movie updatedMovie = movieRepository.save(movie);
+
+        //6. generate posterUrl for it
+        String posterUrl = baseUrl + "/file/" + fileName;
+
+        //7. map to MovieDto and return it
+        MovieDto response = new MovieDto(
+                movie.getMovieId(),
+                movie.getTitle(),
+                movie.getDirector(),
+                movie.getStudio(),
+                movie.getMovieCast(),
+                movie.getRealeaseYear(),
+                movie.getPoster(),
+                posterUrl
+        );
+
+        return response;
     }
+
 
 
     @Override
