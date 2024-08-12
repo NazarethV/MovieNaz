@@ -98,7 +98,6 @@ public class MovieServiceImpl implements MovieService{
                 movie.getTitle(),
                 movie.getDirector(),
                 movie.getStudio(),
-                movie.getStudio(),
                 movie.getMovieCast(),
                 movie.getRealeaseYear(),
                 movie.getPoster(),
@@ -123,7 +122,6 @@ public class MovieServiceImpl implements MovieService{
                     movie.getTitle(),
                     movie.getDirector(),
                     movie.getStudio(),
-                    movie.getStudio(),
                     movie.getMovieCast(),
                     movie.getRealeaseYear(),
                     movie.getPoster(),
@@ -133,6 +131,18 @@ public class MovieServiceImpl implements MovieService{
         }
 
         return movieDtos;
+    }
+
+
+    @Override
+    public MovieDto updateMovie(Integer movieId, MovieDto movieDto, MultipartFile file) throws IOException {
+        return null;
+    }
+
+
+    @Override
+    public String deleteMovie(Integer movieId) {
+        return "";
     }
 
 
