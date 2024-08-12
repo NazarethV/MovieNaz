@@ -27,8 +27,8 @@ public class FileServiceImpl implements FileService{
             f.mkdir();
         }
 
-        //copy the file or upload file to the path
-        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+        //copy the file or upload file to the path              NO QUEREMOS QUE SE ELIMINEN LOS "ARCHIVOS" REPETIDOS ((Si los nombres de peliculas repetidos))
+        Files.copy(file.getInputStream(), Paths.get(filePath); //, StandardCopyOption.REPLACE_EXISTING);
 
         return fileName;
     }
