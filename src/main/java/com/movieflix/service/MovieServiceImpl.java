@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +40,13 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public MovieDto addMovie(MovieDto movieDto, MultipartFile file) throws IOException {
-        //1. upload the file  (Para cargar el archivo primero hay que traer el servicio de archivos (FileService))
+        //1. upload the file
+        //Verificamos si el Nombre del archivo ya EXISTE O NO
+        if (Files.exists(Paths.get(path + File.separator + file.getOriginalFilename()))){
+            throw new RuntimeException("File already exists: Please enter another file name!");
+        }
+
+        //(Para cargar el archivo hay que traer el servicio de archivos (FileService))
         String uploadedFileName = fileService.uploadFile(path, file);  //Proporcionamos una ruta y un archivo  (por eso más arriba declaramos path, para poder utilizar la ruta)
 
         //2. set the value of field 'poster' as filename
