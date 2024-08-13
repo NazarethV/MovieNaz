@@ -65,7 +65,17 @@ public class MovieController {
         return ResponseEntity.ok(movieService.deleteMovie(movieId));
     }
 
+    /////Copy pASTE
+    @GetMapping("/allMoviesPage")
+    public ResponseEntity<MoviePageResponse> getMoviesWithPagination(
+            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize
+    ) {
+        return ResponseEntity.ok(movieService.getAllMoviesWithPagination(pageNumber, pageSize));
+    }
 
+
+    //////////////
     //Creamos un Método Privado para que realice la CONVERSIÓN del Objeto MOVIE q necesitamos
     private MovieDto convertToMovieDto(String movieDtoObj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
