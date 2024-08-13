@@ -147,7 +147,7 @@ public class MovieServiceImpl implements MovieService{
     public MovieDto updateMovie(Integer movieId, MovieDto movieDto, MultipartFile file) throws IOException {
         //1. check if movie object exists with given movieId
         Movie mv = movieRepository.findById(movieId).
-                orElseThrow(() -> new MovieNotFoundException("Movie not found with id = " + movieId));
+                orElseThrow(() -> new RuntimeException("Movie not found with id = " + movieId));
 
         //2. if file is null, do nothing
         //if file is not null, then delete existing file associated with the record, and upload the new file (si el archivo no es nulo, elimine el archivo existente asociado al registro y cargue el nuevo archivo)
@@ -198,7 +198,7 @@ public class MovieServiceImpl implements MovieService{
     public String deleteMovie(Integer movieId) throws IOException{
         //1. check if movie object exists in DB
         Movie mv = movieRepository.findById(movieId)
-                .orElseThrow(() -> new MovieNotFoundException("Movie not found with id = " + movieId));
+                .orElseThrow(() -> new RuntimeException("Movie not found with id = " + movieId));
         Integer id = mv.getMovieId();
 
         //2. delete the file associated with this object (ELIMINAR EL ARCHIVO ASOCIADO CON ESTE OBJETO)
