@@ -61,10 +61,9 @@ public class MovieController {
 
     //Método para eliminar Una MOVIE
     @DeleteMapping("/delete/{movieId}")
-    public ResponseEntity<String> deleteMovieHandler(PathVariable Integer movieId) throws IOException {
+    public ResponseEntity<String> deleteMovieHandler(@PathVariable Integer movieId) throws IOException {
         return ResponseEntity.ok(movieService.deleteMovie(movieId));
     }
-
 
 
     //Creamos un Método Privado para que realice la CONVERSIÓN del Objeto MOVIE q necesitamos
