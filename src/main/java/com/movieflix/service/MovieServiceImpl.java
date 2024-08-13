@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -163,7 +162,7 @@ public class MovieServiceImpl implements MovieService{
 
        //4. map it to Movie object
         Movie movie = new Movie(
-                mv.getMovieId(),
+                mv.getMovieId(), //Guardar en el repositorio
                 movieDto.getTitle(),
                 movieDto.getDirector(),
                 movieDto.getStudio(),
@@ -178,7 +177,7 @@ public class MovieServiceImpl implements MovieService{
         //6. generate posterUrl for it
         String posterUrl = baseUrl + "/file/" + fileName;
 
-        //7. map to MovieDto and return it
+        //7. map to MovieDto and return it  (La RESPUESTA)
         MovieDto response = new MovieDto(
                 movie.getMovieId(),
                 movie.getTitle(),
@@ -202,14 +201,13 @@ public class MovieServiceImpl implements MovieService{
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found with id = " + movieId));
         Integer id = mv.getMovieId();
 
-        //2. delete the file associated with this object
+        //2. delete the file associated with this object (ELIMINAR EL ARCHIVO ASOCIADO CON ESTE OBJETO)
         Files.deleteIfExists(Paths.get(path +  File.separator + mv.getPoster()));
 
-        //3. delete the movie object
+        //3. delete the movie object  (ELIMINAR EL OBJETO)
         movieRepository.delete(mv);
         return "Movie deleted with id = " + id;
     }
-
 
 
 }
