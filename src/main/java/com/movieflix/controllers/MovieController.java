@@ -49,6 +49,24 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getAllMovies());
     }
 
+    //Método para actualizar Una MOVIE
+    @PutMapping("/update/{movieId}")
+    public ResponseEntity<MovieDto> updateMovieHandler(@PathVariable Integer movieId,
+                                                       @RequestPart MultipartFile file,
+                                                       @RequestPart String movieDtoObj) throws IOException {
+        if (file.isEmpty()) file = null;
+        MovieDto movieDto = convertToMovieDto(movieDtoObj);
+        return ResponseEntity.ok(movieService.updateMovie(movieId, movieDto, file));
+    }
+
+    //Método para eliminar Una MOVIE
+    @DeleteMapping("/delete/{movieId}")
+    public ResponseEntity<String> deleteMovieHandler(PathVariable Integer movieId) throws IOException {
+        return ResponseEntity.ok(movieService.deleteMovie(movieId));
+    }
+
+
+
     //Creamos un Método Privado para que realice la CONVERSIÓN del Objeto MOVIE q necesitamos
     private MovieDto convertToMovieDto(String movieDtoObj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
