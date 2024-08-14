@@ -215,38 +215,38 @@ public class MovieServiceImpl implements MovieService{
 
 
     //Copy Paste
-    @Override
-    public MoviePageResponse getAllMoviesWithPagination(Integer pageNumber, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+//    @Override
+//    public MoviePageResponse getAllMoviesWithPagination(Integer pageNumber, Integer pageSize) {
+//        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+//
+//        Page<Movie> moviePages = movieRepository.findAll(pageable);
+//        List<Movie> movies = moviePages.getContent();
+//
+//        List<MovieDto> movieDtos = new ArrayList<>();
+//
+//        // 2. iterate through the list, generate posterUrl for each movie obj,
+//        // and map to MovieDto obj
+//        for(Movie movie : movies) {
+//            String posterUrl = baseUrl + "/file/" + movie.getPoster();
+//            MovieDto movieDto = new MovieDto(
+//                    movie.getMovieId(),
+//                    movie.getTitle(),
+//                    movie.getDirector(),
+//                    movie.getStudio(),
+//                    movie.getMovieCast(),
+//                    movie.getReleaseYear(),
+//                    movie.getPoster(),
+//                    posterUrl
+//            );
+//            movieDtos.add(movieDto);
+//        }
 
-        Page<Movie> moviePages = movieRepository.findAll(pageable);
-        List<Movie> movies = moviePages.getContent();
 
-        List<MovieDto> movieDtos = new ArrayList<>();
-
-        // 2. iterate through the list, generate posterUrl for each movie obj,
-        // and map to MovieDto obj
-        for(Movie movie : movies) {
-            String posterUrl = baseUrl + "/file/" + movie.getPoster();
-            MovieDto movieDto = new MovieDto(
-                    movie.getMovieId(),
-                    movie.getTitle(),
-                    movie.getDirector(),
-                    movie.getStudio(),
-                    movie.getMovieCast(),
-                    movie.getReleaseYear(),
-                    movie.getPoster(),
-                    posterUrl
-            );
-            movieDtos.add(movieDto);
-        }
-
-
-        return new MoviePageResponse(movieDtos, pageNumber, pageSize,
-                moviePages.getTotalElements(),
-                moviePages.getTotalPages(),
-                moviePages.isLast());
-    }
+//        return new MoviePageResponse(movieDtos, pageNumber, pageSize,
+//                moviePages.getTotalElements(),
+//                moviePages.getTotalPages(),
+//                moviePages.isLast());
+//    }
 
 
 }
