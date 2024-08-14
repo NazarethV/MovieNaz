@@ -29,6 +29,13 @@ public class MovieController {
     @PostMapping("/add-movie")
     public ResponseEntity<MovieDto> addMovieHandler(@RequestPart MultipartFile file,
                                                     @RequestPart String movieDto) throws IOException {
+
+       //Agregamos Excepciones: (En caso de que el archivo esté vacío)
+        if (file.isEmpty()){
+            throw EmptyFileException() //Arrojamos una excepción de archivo vacío
+        }
+
+
         //Se interactua con la capa de servicio
         // (Y se convierte Cadena a un Json gracias al método para Convertir)
         MovieDto dto = convertToMovieDto(movieDto);

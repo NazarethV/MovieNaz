@@ -96,7 +96,8 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public MovieDto getMovie(Integer movieId) {
         //1. check the data in DB and if exists, fetch the data of given ID (Comprobar si existe en la Base de Datos e Identificarlo por su ID)
-        Movie movie = movieRepository.findById(movieId).orElseThrow(() -> new RuntimeException("Movie not found!"));
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(() -> new RuntimeException("Movie not found!"));
 
         //2. generate posterUrl  (Generar la URL de Poster)
         String posterUrl = baseUrl + "/file/" + movie.getPoster();
