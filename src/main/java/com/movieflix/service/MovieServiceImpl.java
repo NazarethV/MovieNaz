@@ -1,11 +1,14 @@
 package com.movieflix.service;
 
 import com.movieflix.dto.MovieDto;
+import com.movieflix.dto.MoviePageResponse;
 import com.movieflix.entities.Movie;
 import com.movieflix.exceptions.FileExistsException;
 import com.movieflix.exceptions.MovieNotFoundException;
 import com.movieflix.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -213,8 +216,6 @@ public class MovieServiceImpl implements MovieService{
         return "Movie deleted with id = " + id;
     }
 
-
-    //Copy Paste
     @Override
     public MoviePageResponse getAllMoviesWithPagination(Integer pageNumber, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
@@ -226,7 +227,7 @@ public class MovieServiceImpl implements MovieService{
 
         // 2. iterate through the list, generate posterUrl for each movie obj,
         // and map to MovieDto obj
-        for(Movie movie : movies) {
+        for (Movie movie : movies) {
             String posterUrl = baseUrl + "/file/" + movie.getPoster();
             MovieDto movieDto = new MovieDto(
                     movie.getMovieId(),
@@ -240,13 +241,18 @@ public class MovieServiceImpl implements MovieService{
             );
             movieDtos.add(movieDto);
         }
-
-
         return new MoviePageResponse(movieDtos, pageNumber, pageSize,
                 moviePages.getTotalElements(),
                 moviePages.getTotalPages(),
                 moviePages.isLast());
     }
+
+    @Override
+    public MoviePageResponse getAllMoviesWithPaginationAndSorting(Integer pageNumber, Integer pageSize, String sortBy, String dir) {
+        return null;
+    }
+
+
 
 
 }
