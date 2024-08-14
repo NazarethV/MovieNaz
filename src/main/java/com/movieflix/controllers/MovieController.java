@@ -65,7 +65,7 @@ public class MovieController {
         return ResponseEntity.ok(movieService.deleteMovie(movieId));
     }
 
-    /////Copy pASTE
+    /////Copy Paste !!!!
     @GetMapping("/allMoviesPage")
     public ResponseEntity<MoviePageResponse> getMoviesWithPagination(
             @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
@@ -74,7 +74,7 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getAllMoviesWithPagination(pageNumber, pageSize));
     }
 
-
+    /////Copy Paste !!!!
     @GetMapping("/allMoviesPageSort")
     public ResponseEntity<MoviePageResponse> getMoviesWithPaginationAndSorting(
             @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
