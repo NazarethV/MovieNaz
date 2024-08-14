@@ -32,7 +32,7 @@ public class MovieController {
 
        //Agregamos Excepciones: (En caso de que el archivo esté vacío)
         if (file.isEmpty()){
-            throw EmptyFileException() //Arrojamos una excepción de archivo vacío
+            throw EmptyFileException("File is empty! Please send another file"); //Arrojamos una excepción de archivo vacío
         }
 
 
