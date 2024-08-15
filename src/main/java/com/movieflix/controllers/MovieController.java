@@ -104,7 +104,24 @@ public class MovieController {
 
 
 
+/////////////////////////
+@GetMapping("/allMoviesPageSort")
+public ResponseEntity<MoviePageResponse> getMoviesWithPaginationAndSorting(
+        @RequestParam(defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+        @RequestParam(defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
+        @RequestParam(defaultValue = AppConstant.SORT_BY, required = false) String sortBy,
+        @RequestParam(defaultValue = AppConstant.SORT_DIR, required = false) String dir
+) {
+    return ResponseEntity.ok(movieService.getAllMoviesWithPaginationAndSorting(pageNumber, pageSize, sortBy, dir));
+}
 
+//////////////
+//Creamos un Método Privado para que realice la CONVERSIÓN del Objeto MOVIE q necesitamos
+private MovieDto convertToMovieDto(String movieDtoObj) throws JsonProcessingException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    return objectMapper.readValue(movieDtoObj, MovieDto.class);
+}
+}
 
 
 
