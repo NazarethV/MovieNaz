@@ -3,6 +3,7 @@ package com.movieflix.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movieflix.dto.MovieDto;
+import com.movieflix.dto.MoviePageResponse;
 import com.movieflix.exceptions.EmptyFileException;
 import com.movieflix.repositories.MovieRepository;
 import com.movieflix.service.MovieService;
@@ -73,25 +74,24 @@ public class MovieController {
         return ResponseEntity.ok(movieService.deleteMovie(movieId));
     }
 
-    /////Copy Paste !!!!
-//    @GetMapping("/allMoviesPage")
-//    public ResponseEntity<MoviePageResponse> getMoviesWithPagination(
-//            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
-//            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize
-//    ) {
-//        return ResponseEntity.ok(movieService.getAllMoviesWithPagination(pageNumber, pageSize));
-//    }
-//
-//    /////Copy Paste !!!!
-//    @GetMapping("/allMoviesPageSort")
-//    public ResponseEntity<MoviePageResponse> getMoviesWithPaginationAndSorting(
-//            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
-//            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
-//            @RequestParam(defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
-//            @RequestParam(defaultValue = AppConstants.SORT_DIR, required = false) String dir
-//    ) {
-//        return ResponseEntity.ok(movieService.getAllMoviesWithPaginationAndSorting(pageNumber, pageSize, sortBy, dir));
-//    }
+
+    @GetMapping("/allMoviesPage")
+    public ResponseEntity<MoviePageResponse> getMoviesWithPagination(
+            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize
+    ) {
+        return ResponseEntity.ok(movieService.getAllMoviesWithPagination(pageNumber, pageSize));
+    }
+
+    @GetMapping("/allMoviesPageSort")
+    public ResponseEntity<MoviePageResponse> getMoviesWithPaginationAndSorting(
+            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
+            @RequestParam(defaultValue = AppConstants.SORT_DIR, required = false) String dir
+    ) {
+        return ResponseEntity.ok(movieService.getAllMoviesWithPaginationAndSorting(pageNumber, pageSize, sortBy, dir));
+    }
 
     //////////////
     //Creamos un Método Privado para que realice la CONVERSIÓN del Objeto MOVIE q necesitamos

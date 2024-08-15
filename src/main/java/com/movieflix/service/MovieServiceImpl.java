@@ -220,6 +220,8 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public MoviePageResponse getAllMoviesWithPagination(Integer pageNumber, Integer pageSize) {
+     //Pageable: Interfaz que se encarga de la configuración del Paginado
+     //Cómo es
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         Page<Movie> moviePages = movieRepository.findAll(pageable);
@@ -269,7 +271,7 @@ public class MovieServiceImpl implements MovieService{
                     movie.getDirector(),
                     movie.getStudio(),
                     movie.getMovieCast(),
-                    movie.getReleaseYear(),
+                    movie.getRealeaseYear(),
                     movie.getPoster(),
                     posterUrl
             );
