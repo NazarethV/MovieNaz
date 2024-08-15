@@ -237,7 +237,7 @@ public class MovieServiceImpl implements MovieService{
                     movie.getDirector(),
                     movie.getStudio(),
                     movie.getMovieCast(),
-                    movie.getReleaseYear(),
+                    movie.getRealeaseYear(),
                     movie.getPoster(),
                     posterUrl
             );
