@@ -7,6 +7,7 @@ import com.movieflix.dto.MoviePageResponse;
 import com.movieflix.exceptions.EmptyFileException;
 import com.movieflix.repositories.MovieRepository;
 import com.movieflix.service.MovieService;
+import com.movieflix.utils.AppConstant;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,18 +78,18 @@ public class MovieController {
 
     @GetMapping("/allMoviesPage")
     public ResponseEntity<MoviePageResponse> getMoviesWithPagination(
-            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
-            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize
+            @RequestParam(defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize
     ) {
         return ResponseEntity.ok(movieService.getAllMoviesWithPagination(pageNumber, pageSize));
     }
 
     @GetMapping("/allMoviesPageSort")
     public ResponseEntity<MoviePageResponse> getMoviesWithPaginationAndSorting(
-            @RequestParam(defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
-            @RequestParam(defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
-            @RequestParam(defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
-            @RequestParam(defaultValue = AppConstants.SORT_DIR, required = false) String dir
+            @RequestParam(defaultValue = AppConstant.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(defaultValue = AppConstant.PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(defaultValue = AppConstant.SORT_BY, required = false) String sortBy,
+            @RequestParam(defaultValue = AppConstant.SORT_DIR, required = false) String dir
     ) {
         return ResponseEntity.ok(movieService.getAllMoviesWithPaginationAndSorting(pageNumber, pageSize, sortBy, dir));
     }
