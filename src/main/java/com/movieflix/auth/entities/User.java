@@ -39,50 +39,50 @@ public class User {
     @Size(min = 5, message = "The password must have at least 5 characters")
     private String password;
 
-    @OneToOne(mappedBy = "user")
-    private RefreshToken refreshToken;
-
-    @OneToOne(mappedBy = "user")
-    private ForgotPassword forgotPassword;
-
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+//    @OneToOne(mappedBy = "user")
+//    private RefreshToken refreshToken;
+//
+//    @OneToOne(mappedBy = "user")
+//    private ForgotPassword forgotPassword;
+//
+//    @Enumerated(EnumType.STRING)
+//    private UserRole role;
+//
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return List.of(new SimpleGrantedAuthority(role.name()));
+//    }
+//
+//    @Override
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return email;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 
 }
 
