@@ -44,14 +44,13 @@ public class User implements UserDetails {
     private String password;
 
     @OneToOne(mappedBy = "user")
-    private RefreshToken refreshToken;
+    private RefreshToken refreshToken;  //Entidad RefreshToken
 
     @OneToOne(mappedBy = "user")
-    private ForgotPassword forgotPassword;
-
+    private ForgotPassword forgotPassword; //Entidad ForgotPassword
 
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private UserRole role;  //Enum UserRole  (USER - ADMIN)
 
     private boolean isEnabled = true;
 
