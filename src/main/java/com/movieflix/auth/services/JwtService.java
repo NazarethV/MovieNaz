@@ -16,10 +16,11 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
+    //Genérico que siempre es de uso común cuando utilizamos la Autenticación JWT:
 
     private static final String SECRET_KEY = "BF7FD11ACE545745B7BA1AF98B6F156D127BC7BB544BAB6A4FD74E4FC7";
 
-    //extract username from JWT
+    //extract username from JWT (Extrae el username del token)
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -37,9 +38,7 @@ public class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
     }
-
 
     //decode and get the key
     private Key getSignInKey() {
