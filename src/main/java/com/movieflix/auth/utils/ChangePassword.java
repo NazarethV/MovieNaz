@@ -1,4 +1,4 @@
 package com.movieflix.auth.utils;
 
-public class ChangePassword {
+public record ChangePassword(String password, String repeatPassword) {
 }
