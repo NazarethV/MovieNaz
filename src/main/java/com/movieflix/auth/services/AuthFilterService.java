@@ -31,7 +31,7 @@ public class AuthFilterService extends OncePerRequestFilter {
     }
 
 
-    @Override
+    @Override                 //(Headers)ENVÍA UN ENCABEZADO DE AUTORIZACIÓN
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -73,14 +73,3 @@ public class AuthFilterService extends OncePerRequestFilter {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
