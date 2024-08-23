@@ -1,9 +1,13 @@
 package com.movieflix.controllers;
 
+import com.movieflix.auth.entities.RefreshToken;
+import com.movieflix.auth.entities.User;
 import com.movieflix.auth.services.AuthService;
 import com.movieflix.auth.services.JwtService;
 import com.movieflix.auth.services.RefreshTokenService;
 import com.movieflix.auth.utils.AuthResponse;
+import com.movieflix.auth.utils.LoginRequest;
+import com.movieflix.auth.utils.RefreshTokenRequest;
 import com.movieflix.auth.utils.RegisterRequest;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +36,23 @@ public class AuthController {
         return ResponseEntity.ok(authService.register(registerRequest));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
+        return ResponseEntity.ok(authService.login(loginRequest));
+    }
 
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
 
+        RefreshToken refreshToken = refreshTokenService.verifyRefreshToken(refreshTokenRequest.getRefreshToken());
+        User user = refreshToken.getUser();
 
+        String accessToken = jwtService.generateToken(user);
+
+        return ResponseEntity.ok(AuthResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken.getRefreshToken())
+                .build());
+    }
 
 }
