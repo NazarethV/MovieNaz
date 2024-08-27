@@ -37,7 +37,7 @@ public class AuthService {
         var refreshToken = refreshTokenService.createRefreshToken(savedUser.getEmail());
 
         return AuthResponse.builder()
-                .accessToken()
+                .accessToken(accessToken)
                 .refreshToken(refreshToken.getRefreshToken())
                 .build();
     }
