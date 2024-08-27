@@ -64,6 +64,7 @@ public class User implements UserDetails {
     //Metodos de UserDetails:
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        //Agregamos el rol
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
