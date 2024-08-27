@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
 
+//En proceso
+
 @RestController
 @RequestMapping("/forgotPassword")
 public class ForgotPasswordController {
