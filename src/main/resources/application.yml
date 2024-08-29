@@ -18,7 +18,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: "resanelisoa@gmail.com"
-    password: "tu_contraseña_de_aplicación"
+    password: "Ventana1204"
     properties:
       mail:
         smtp:
@@ -26,8 +26,10 @@ spring:
           starttls:
             enable: true
 
+# Configuración personalizada para el proyecto
 project:
   poster: poster/
 
+# Base URL de la aplicación
 base:
   url: "http://localhost:8080"

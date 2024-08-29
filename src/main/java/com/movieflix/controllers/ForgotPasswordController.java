@@ -5,6 +5,7 @@ import com.movieflix.auth.entities.User;
 import com.movieflix.auth.repositories.ForgotPasswordRepository;
 import com.movieflix.auth.repositories.UserRepository;
 import com.movieflix.auth.utils.ChangePassword;
+import com.movieflix.dto.MailBody;
 import com.movieflix.service.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
 
-//En proceso
+
 
 @RestController
 @RequestMapping("/forgotPassword")
