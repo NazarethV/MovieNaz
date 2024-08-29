@@ -78,7 +78,7 @@ public class ForgotPasswordController {
         return ResponseEntity.ok("OTP verified!");
     }
 
-
+    @PostMapping("/changePassword/{email}")
     public ResponseEntity<String> changePasswordHandler(@RequestBody ChangePassword changePassword,
                                                         @PathVariable String email) {
         if (!Objects.equals(changePassword.password(), changePassword.repeatPassword())) {

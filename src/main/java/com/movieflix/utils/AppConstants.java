@@ -1,6 +1,6 @@
 package com.movieflix.utils;
 
-public class AppConstant {
+public class AppConstants {
 
     public static final String PAGE_NUMBER = "0"; //El número de página comenzaría desde cero
 
