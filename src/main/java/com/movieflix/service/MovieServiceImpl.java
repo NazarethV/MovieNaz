@@ -155,7 +155,7 @@ public class MovieServiceImpl implements MovieService{
     public MovieDto updateMovie(Integer movieId, MovieDto movieDto, MultipartFile file) throws IOException {
         //1. check if movie object exists with given movieId
         Movie mv = movieRepository.findById(movieId).
-                orElseThrow(() -> new RuntimeException("Movie not found with id = " + movieId));
+                orElseThrow(() -> new MovieNotFoundException("Movie not found with id = " + movieId));
 
         //2. if file is null, do nothing
         //if file is not null, then delete existing file associated with the record, and upload the new file (si el archivo no es nulo, elimine el archivo existente asociado al registro y cargue el nuevo archivo)
@@ -259,12 +259,13 @@ public class MovieServiceImpl implements MovieService{
 
         Page<Movie> moviePages = movieRepository.findAll(pageable);
         List<Movie> movies = moviePages.getContent();
+
         List<MovieDto> movieDtos = new ArrayList<>();
 
         // 2. iterate through the list, generate posterUrl for each movie obj,
         // and map to MovieDto obj
         for (Movie movie : movies) {
-            String posterUrl = baseUrl + "/file" + movie.getPoster();
+            String posterUrl = baseUrl + "/file/" + movie.getPoster();
             MovieDto movieDto = new MovieDto(
                     movie.getMovieId(),
                     movie.getTitle(),

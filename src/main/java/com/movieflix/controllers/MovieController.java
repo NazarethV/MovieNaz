@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movieflix.dto.MovieDto;
 import com.movieflix.dto.MoviePageResponse;
 import com.movieflix.exceptions.EmptyFileException;
-import com.movieflix.repositories.MovieRepository;
 import com.movieflix.service.MovieService;
 import com.movieflix.utils.AppConstant;
 import org.springframework.http.HttpStatus;
@@ -33,7 +32,7 @@ public class MovieController {
     @PreAuthorize("hasAuthority('ADMIN')") //Sólo el User ADMIN puede agregar películas
     @PostMapping("/add-movie")
     public ResponseEntity<MovieDto> addMovieHandler(@RequestPart MultipartFile file,
-                                                    @RequestPart String movieDto) throws IOException {
+                                                    @RequestPart String movieDto) throws IOException, EmptyFileException {
 
        //Agregamos Excepciones: (En caso de que el archivo esté vacío)
         if (file.isEmpty()){

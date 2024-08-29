@@ -40,7 +40,7 @@ public class AuthFilterService extends OncePerRequestFilter {
         String jwt;
         String username;
 
-        if (authHeader == null || !authHeader.startsWith("Bearer")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
