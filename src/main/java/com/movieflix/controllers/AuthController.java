@@ -9,7 +9,6 @@ import com.movieflix.auth.utils.AuthResponse;
 import com.movieflix.auth.utils.LoginRequest;
 import com.movieflix.auth.utils.RefreshTokenRequest;
 import com.movieflix.auth.utils.RegisterRequest;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

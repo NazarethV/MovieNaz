@@ -1,0 +1,28 @@
+# .readthedocs.yaml
+# Read the Docs configuration file
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+# Required
+version: 2
+
+# Set the OS and tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.12" # Aunque tu proyecto es Java, este bloque es necesario para Read the Docs.
+
+# Build documentation using Javadoc
+javadoc:
+  source: src/main/java
+  output: docs/javadoc
+
+# Command to build your documentation
+# Using Maven to generate Javadoc and move it to the 'docs' directory
+commands:
+  - mvn clean javadoc:javadoc
+  - cp -r target/site/apidocs docs/javadoc
+
+# Optional: Define formats you want for your documentation
+# formats:
+#   - pdf
+#   - epub
